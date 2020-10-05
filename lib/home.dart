@@ -1,3 +1,5 @@
+import 'package:BlogApp/cards.dart';
+import 'package:BlogApp/category.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -6,20 +8,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  _buildCategory({String title}) {
-    return Expanded(
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Colors.grey[500],
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,15 +79,60 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 SizedBox(height: 22),
+                Category(),
+                SizedBox(height: 22),
+                Cards(),
+                SizedBox(height: 16),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildCategory(title: "Business"),
-                    _buildCategory(title: "Tech"),
-                    _buildCategory(title: "World"),
-                    _buildCategory(title: "Politics"),
-                    _buildCategory(title: "Design"),
+                    Expanded(
+                      flex: 8,
+                      child: Text(
+                        "Hot Topics",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Icon(
+                        Icons.short_text,
+                        color: Colors.grey,
+                        size: 20,
+                      ),
+                    )
                   ],
+                ),
+                SizedBox(height: 14),
+                Container(
+                  width: MediaQuery.of(context).size.width * 1,
+                  height: 110,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: EdgeInsets.all(6),
+                        padding: EdgeInsets.all(8),
+                        width: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.red,
+                        ),
+                        child: Text(
+                          "Creative",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: 15,
+                  ),
                 ),
               ],
             ),
