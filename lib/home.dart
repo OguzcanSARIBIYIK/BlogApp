@@ -1,5 +1,7 @@
 import 'package:BlogApp/cards.dart';
 import 'package:BlogApp/category.dart';
+import 'package:BlogApp/news.dart';
+import 'package:BlogApp/topic.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -8,6 +10,43 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<Map<String, dynamic>> topicList = [
+    {
+      "color": Color(0xff39C7D8),
+      "title": "Creative",
+    },
+    {
+      "color": Color(0xffFF9D9B),
+      "title": "Traveling",
+    },
+    {
+      "color": Color(0xff86ADFF),
+      "title": "Cycling",
+    },
+    {
+      "color": Color(0xff6934FF),
+      "title": "Business",
+    },
+  ];
+
+  List<Map<String, dynamic>> newsList = [
+    {
+      "color": Color(0xffFF9D9B),
+      "title": "CREATIVE",
+      "description": "Lorem Ipsum is simply dummy text of the printing and..",
+    },
+    {
+      "color": Color(0xff53CFB1),
+      "title": "TRAVEL",
+      "description": "Lorem Ipsum is simply dummy text of the printing and..",
+    },
+    {
+      "color": Color(0xff418DFF),
+      "title": "CODING",
+      "description": "Lorem Ipsum is simply dummy text of the printing and..",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,31 +148,38 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 14),
                 Container(
                   width: MediaQuery.of(context).size.width * 1,
-                  height: 110,
+                  height: 120,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     physics: AlwaysScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.all(6),
-                        padding: EdgeInsets.all(8),
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.red,
-                        ),
-                        child: Text(
-                          "Creative",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                      return Topic(
+                        color: this.topicList[index]["color"],
+                        title: this.topicList[index]["title"],
                       );
                     },
-                    itemCount: 15,
+                    itemCount: this.topicList.length,
                   ),
                 ),
+                SizedBox(height: 14),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Latest News",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 14),
+                for (var news in this.newsList)
+                  News(
+                    color: news["color"],
+                    title: news["title"],
+                    description: news["description"],
+                  ),
               ],
             ),
           ),
