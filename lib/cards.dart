@@ -63,6 +63,16 @@ class Cards extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: Color(0xff7E5EFF),
               ),
+              child: Center(
+                child: Text(
+                  "Image Here",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
             ),
           ),
         ],
